@@ -19,6 +19,7 @@ namespace WpfApp.ViewModels.LoggedInUser
         private myBindingList<Note> _userNotesList;
         private Note _selectedRow;
         
+
         public myBindingList<Note> UserNotesList
         {
             get { return _userNotesList; }
