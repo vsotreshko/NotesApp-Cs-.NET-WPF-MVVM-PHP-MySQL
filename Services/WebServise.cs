@@ -120,5 +120,31 @@ namespace WpfApp.Services
                 return response;
             }
         }
+
+        public async Task<string> EditNote(string username, string password, int note_id, string note_title, string note_text)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                var parameters = new Dictionary<string, string> {
+                    { "note_id", note_id.ToString() },
+                    { "note_title", note_title },
+                    { "note_text", note_text },
+                    { "username", username },
+                    { "password", password }
+                };
+
+                string response = string.Empty;
+                var encodedContent = new FormUrlEncodedContent(parameters);
+
+                var result = await httpClient.PostAsync("https://lolokol.000webhostapp.com/editNote.php", encodedContent);
+
+                if (result.IsSuccessStatusCode)
+                {
+                    response = await result.Content.ReadAsStringAsync();
+                }
+
+                return response;
+            }
+        }
     }
 }

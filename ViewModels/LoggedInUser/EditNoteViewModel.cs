@@ -13,6 +13,7 @@ namespace WpfApp.ViewModels.LoggedInUser
     public class EditNoteViewModel : BaseViewModel
     {
         private readonly MainWindowViewModel _mainWindowViewModel;
+        private Note _noteToEdit;
 
         private string _title;
         private string _note;
@@ -26,7 +27,6 @@ namespace WpfApp.ViewModels.LoggedInUser
                 OnPropertyChanged(nameof(Title));
             }
         }
-
         public string Note
         {
             get
@@ -38,13 +38,19 @@ namespace WpfApp.ViewModels.LoggedInUser
             }
         }
 
+        public Note NoteToEdit
+        {
+            get { return _noteToEdit; }
+            set { _noteToEdit = value; }
+        }
+
         public ICommand EditNoteCommand { get; }
         public ICommand UpdateViewCommand { get; set; }
 
         public EditNoteViewModel(MainWindowViewModel mainWindowViewModel)
         {
             _mainWindowViewModel = mainWindowViewModel;
-            //EditNoteCommand = new EditNoteCommand(this, mainWindowViewModel);
+            EditNoteCommand = new EditNoteCommand(this, mainWindowViewModel);
             UpdateViewCommand = new UpdateViewCommand(mainWindowViewModel);
         }
 

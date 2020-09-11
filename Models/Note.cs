@@ -50,10 +50,5 @@ namespace WpfApp.Models
                 OnPropertyChanged(nameof(note_text));
             }
         }
-
-        public Note()
-        {
-            Console.WriteLine("asd");
-        }
     }
 }
