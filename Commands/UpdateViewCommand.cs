@@ -40,7 +40,6 @@ namespace WpfApp.Commands
             }
             else if (parameter.ToString() == "UserPage")
             {
-                _mainWindowViewModel.userPageViewModel = new UserPageViewModel();
                 _mainWindowViewModel.SelectedViewModel = _mainWindowViewModel.userPageViewModel;
             }
         }

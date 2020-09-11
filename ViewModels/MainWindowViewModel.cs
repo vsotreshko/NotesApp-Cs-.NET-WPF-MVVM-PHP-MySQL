@@ -1,4 +1,6 @@
 ﻿using WpfApp.Commands;
+using WpfApp.Custom_types;
+using WpfApp.Models;
 using WpfApp.Services;
 using WpfApp.ViewModels.Authentication;
 using WpfApp.ViewModels.Base;
@@ -27,6 +29,8 @@ namespace WpfApp.ViewModels
         //public AddNoteViewModel addNoteViewModel;
         #endregion
 
+        public myBindingList<Note> UserNotesList;
+
         public WebServise webServise;
 
         public MainWindowViewModel()
@@ -35,6 +39,7 @@ namespace WpfApp.ViewModels
 
             loginViewModel = new LoginViewModel(this);
             signUpViewModel = new SignUpViewModel(this);
+            userPageViewModel = new UserPageViewModel();
 
             SelectedViewModel = loginViewModel;
         }

@@ -50,7 +50,7 @@ namespace WpfApp.Services
             }
         }
 
-        public static async Task<string> Login(string username, string password)
+        public async Task<string> Login(string username, string password)
         {
             using (var httpClient = new HttpClient())
             {

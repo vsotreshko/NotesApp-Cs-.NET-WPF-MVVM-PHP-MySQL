@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using WpfApp.Custom_types;
+using WpfApp.Models;
 using WpfApp.ViewModels;
 using WpfApp.ViewModels.Authentication;
 
@@ -38,8 +41,14 @@ namespace WpfApp.Commands
             var t = Task.Run(() => _mainWindowViewModel.webServise.Login(_loginViewModel.Username, _loginViewModel.Password));
             t.Wait();
 
-            if (t.Result.ToString() == "Success")
+            if (t.Result.ToString().Substring(0, 7) == "Success")
             {
+                int endIndex = t.Result.ToString().Length - 2;
+
+                if (endIndex > t.Result.ToString().Length)
+                {
+                    _mainWindowViewModel.userPageViewModel.UserNotesList = JsonConvert.DeserializeObject<myBindingList<Note>>(t.Result.ToString().Substring(7, endIndex));
+                }
                 _updateViewCommand.Execute("UserPage");
             }
         }
