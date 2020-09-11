@@ -43,13 +43,13 @@ namespace WpfApp.Commands
 
             if (t.Result.ToString().Substring(0, 7) == "Success")
             {
-                int endIndex = t.Result.ToString().Length - 2;
+                int jsonLength = t.Result.ToString().Length - 7;
+                _mainWindowViewModel.userPageViewModel.UserNotesList = JsonConvert.DeserializeObject<myBindingList<Note>>(t.Result.ToString().Substring(7, jsonLength));
 
-                if (endIndex > t.Result.ToString().Length)
-                {
-                    _mainWindowViewModel.userPageViewModel.UserNotesList = JsonConvert.DeserializeObject<myBindingList<Note>>(t.Result.ToString().Substring(7, endIndex));
-                }
                 _updateViewCommand.Execute("UserPage");
+            } else
+            {
+                MessageBox.Show(t.Result.ToString());
             }
         }
 
