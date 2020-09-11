@@ -2,13 +2,27 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:WpfApp"
-             xmlns:views="clr-namespace:WpfApp.Views.Authentication"
-             xmlns:viewmodels="clr-namespace:WpfApp.ViewModels.Authentication"
+             
+             xmlns:viewsAuth="clr-namespace:WpfApp.Views.Authentication"
+             xmlns:viewmodelsAuth="clr-namespace:WpfApp.ViewModels.Authentication"
+             
+             xmlns:viewsLog="clr-namespace:WpfApp.Views.LoggedInUser"
+             xmlns:viewmodelsLog="clr-namespace:WpfApp.ViewModels.LoggedInUser"
+             
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
-        <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
-            <views:LoginView/>
+        <DataTemplate DataType="{x:Type viewmodelsAuth:LoginViewModel}">
+            <viewsAuth:LoginView/>
         </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type viewmodelsAuth:SignUpViewModel}">
+            <viewsAuth:SignUpView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewmodelsLog:UserPageViewModel}">
+            <viewsLog:UserPageView/>
+        </DataTemplate>
+
 
     </Application.Resources>
 </Application>

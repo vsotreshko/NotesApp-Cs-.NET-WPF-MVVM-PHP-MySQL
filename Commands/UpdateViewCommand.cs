@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Microsoft.JScript;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using WpfApp.ViewModels;
+using WpfApp.ViewModels.LoggedInUser;
 
 namespace WpfApp.Commands
 {
@@ -28,7 +30,18 @@ namespace WpfApp.Commands
         {
             if (parameter.ToString() == "Login")
             {
+                _mainWindowViewModel.loginViewModel.cleanLoginView();
                 _mainWindowViewModel.SelectedViewModel = _mainWindowViewModel.loginViewModel;
+            }
+            else if (parameter.ToString() == "SignUp")
+            {
+                _mainWindowViewModel.signUpViewModel.cleanSignUpView();
+                _mainWindowViewModel.SelectedViewModel = _mainWindowViewModel.signUpViewModel;
+            }
+            else if (parameter.ToString() == "UserPage")
+            {
+                _mainWindowViewModel.userPageViewModel = new UserPageViewModel();
+                _mainWindowViewModel.SelectedViewModel = _mainWindowViewModel.userPageViewModel;
             }
         }
     }

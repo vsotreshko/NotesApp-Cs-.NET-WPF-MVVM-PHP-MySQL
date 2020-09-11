@@ -1,8 +1,8 @@
-﻿using System.Windows.Input;
-
-using WpfApp.Commands;
+﻿using WpfApp.Commands;
+using WpfApp.Services;
 using WpfApp.ViewModels.Authentication;
 using WpfApp.ViewModels.Base;
+using WpfApp.ViewModels.LoggedInUser;
 
 namespace WpfApp.ViewModels
 {
@@ -21,20 +21,22 @@ namespace WpfApp.ViewModels
         }
 
         public LoginViewModel loginViewModel;
-        //public SignUpViewModel signUpViewModel;
-        //public UserPageViewModel userPageViewModel;
+        public SignUpViewModel signUpViewModel;
+
+        public UserPageViewModel userPageViewModel;
         //public AddNoteViewModel addNoteViewModel;
         #endregion
 
-        public ICommand UpdateViewCommand { get; set; }
+        public WebServise webServise;
 
         public MainWindowViewModel()
         {
+            webServise = new WebServise();
+
             loginViewModel = new LoginViewModel(this);
+            signUpViewModel = new SignUpViewModel(this);
 
-            UpdateViewCommand = new UpdateViewCommand(this);
-
-            UpdateViewCommand.Execute("Login");
+            SelectedViewModel = loginViewModel;
         }
     }
 }
