@@ -24,7 +24,7 @@ namespace WpfApp.Custom_types
             //remove item from list
             base.RemoveItem(itemIndex);
         }
-
+ 
         public delegate void myIntDelegate(Note deletedItem);
         public event myIntDelegate BeforeRemove;
     }

@@ -17,7 +17,7 @@ namespace WpfApp.Models
         }
         #endregion
 
-        public DateTime creation_date { get; set; } = DateTime.Now;
+        public DateTime creation_date { get; set; }
 
         private int _id;
         private string _title;
@@ -49,6 +49,11 @@ namespace WpfApp.Models
                 _note = value;
                 OnPropertyChanged(nameof(note_text));
             }
+        }
+
+        public Note()
+        {
+            Console.WriteLine("asd");
         }
     }
 }

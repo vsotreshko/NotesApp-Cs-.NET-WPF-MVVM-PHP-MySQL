@@ -24,10 +24,12 @@ namespace WpfApp.Models
             set { _userNotes = value; }
         }
 
-        public User()
+        public User(string username, string password, bool isLoggedIn, myBindingList<Note> userNotes)
         {
-            isLoggedIn = false;
-            UserNotes = new myBindingList<Note>();
+            Username = username;
+            Password = password;
+            this.isLoggedIn = isLoggedIn;
+            UserNotes = userNotes;
         }
     }
 }

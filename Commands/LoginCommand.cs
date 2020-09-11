@@ -44,7 +44,15 @@ namespace WpfApp.Commands
             if (t.Result.ToString().Substring(0, 7) == "Success")
             {
                 int jsonLength = t.Result.ToString().Length - 7;
-                _mainWindowViewModel.userPageViewModel.UserNotesList = JsonConvert.DeserializeObject<myBindingList<Note>>(t.Result.ToString().Substring(7, jsonLength));
+                myBindingList<Note> userNotesList = JsonConvert.DeserializeObject<myBindingList<Note>>(t.Result.ToString().Substring(7, jsonLength));
+                
+                _mainWindowViewModel.userPageViewModel.user = new User(_loginViewModel.Username,
+                                                                        _loginViewModel.Password,
+                                                                        true,
+                                                                        userNotesList
+                );
+
+                _mainWindowViewModel.userPageViewModel.bindUserNotes();
 
                 _updateViewCommand.Execute("UserPage");
             } else

@@ -42,6 +42,15 @@ namespace WpfApp.Commands
             {
                 _mainWindowViewModel.SelectedViewModel = _mainWindowViewModel.userPageViewModel;
             }
+            else if (parameter.ToString() == "AddNewNote")
+            {
+                _mainWindowViewModel.addNewNoteViewModel.cleanAddNewNoteView();
+                _mainWindowViewModel.SelectedViewModel = _mainWindowViewModel.addNewNoteViewModel;
+            }
+            else if (parameter.ToString() == "EditNote")
+            {
+
+            }
         }
     }
 }

@@ -70,6 +70,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\LoggedInUser\AddNewNoteView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoggedInUser\EditNoteView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LoggedInUser\UserPageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -82,9 +90,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Commands\AddNewNoteCommand.cs" />
+    <Compile Include="Commands\EditNoteCommand.cs" />
     <Compile Include="Commands\LoginCommand.cs" />
+    <Compile Include="Commands\LogoutCommand.cs" />
     <Compile Include="Commands\SignUpCommand.cs" />
     <Compile Include="Commands\UpdateViewCommand.cs" />
+    <Compile Include="Commands\UpdateViewToEditNoteViewCommand.cs" />
     <Compile Include="Custom types\myBindingList.cs" />
     <Compile Include="Models\Note.cs" />
     <Compile Include="Models\User.cs" />
@@ -92,6 +104,8 @@
     <Compile Include="ViewModels\Authentication\LoginViewModel.cs" />
     <Compile Include="ViewModels\Authentication\SignUpViewModel.cs" />
     <Compile Include="ViewModels\Base\BaseViewModel.cs" />
+    <Compile Include="ViewModels\LoggedInUser\AddNewNoteViewModel.cs" />
+    <Compile Include="ViewModels\LoggedInUser\EditNoteViewModel.cs" />
     <Compile Include="ViewModels\LoggedInUser\UserPageViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\Authentication\LoginView.xaml.cs">
@@ -99,6 +113,12 @@
     </Compile>
     <Compile Include="Views\Authentication\SignUpView.xaml.cs">
       <DependentUpon>SignUpView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoggedInUser\AddNewNoteView.xaml.cs">
+      <DependentUpon>AddNewNoteView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoggedInUser\EditNoteView.xaml.cs">
+      <DependentUpon>EditNoteView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoggedInUser\UserPageView.xaml.cs">
       <DependentUpon>UserPageView.xaml</DependentUpon>

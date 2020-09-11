@@ -11,6 +11,7 @@
              
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
+        
         <DataTemplate DataType="{x:Type viewmodelsAuth:LoginViewModel}">
             <viewsAuth:LoginView/>
         </DataTemplate>
@@ -23,6 +24,13 @@
             <viewsLog:UserPageView/>
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type viewmodelsLog:AddNewNoteViewModel}">
+            <viewsLog:AddNewNoteView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewmodelsLog:EditNoteViewModel}">
+            <viewsLog:EditNoteView/>
+        </DataTemplate>
 
     </Application.Resources>
 </Application>

@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
+using WpfApp.Commands;
 using WpfApp.Custom_types;
 using WpfApp.Models;
 using WpfApp.ViewModels.Base;
@@ -13,39 +15,60 @@ namespace WpfApp.ViewModels.LoggedInUser
 {
     public class UserPageViewModel : BaseViewModel
     {
+        private readonly MainWindowViewModel _mainWindowViewModel;
         private myBindingList<Note> _userNotesList;
-        private User _user;
+        private Note _selectedRow;
         
         public myBindingList<Note> UserNotesList
         {
             get { return _userNotesList; }
             set { _userNotesList = value; }
         }
-
-        public User User;
-
-        public UserPageViewModel()
+        public User user;
+        
+        public Note SelectedRow
         {
+            get { return _selectedRow; }
+            set 
+            {
+                _selectedRow = value;
+                OnPropertyChanged(nameof(SelectedRow));
+            }
+        }
+
+        public ICommand LogoutCommand { get; set; }
+        public ICommand UpdateViewCommand { get; set; }
+        public ICommand UpdateViewToEditNoteViewCommand { get; set; }
+
+        public UserPageViewModel(MainWindowViewModel mainWindowViewModel)
+        {
+            _mainWindowViewModel = mainWindowViewModel;
+            UpdateViewToEditNoteViewCommand = new UpdateViewToEditNoteViewCommand(this, mainWindowViewModel);
+            UpdateViewCommand = new UpdateViewCommand(mainWindowViewModel);
+            LogoutCommand = new LogoutCommand(mainWindowViewModel);
+            
             UserNotesList = new myBindingList<Note>();
 
-            UserNotesList.ListChanged += UserNotesList_ListChanged;
             UserNotesList.BeforeRemove += UserNotesList_BeforeRemove;
+            
         }
 
         private void UserNotesList_BeforeRemove(Note deletedItem)
         {
-            MessageBox.Show("Item deleted");
+            var t = Task.Run(() => _mainWindowViewModel.webServise.DeleteNote(user.Username, user.Password, deletedItem.id));
+            t.Wait();
+
+            if (t.Result.ToString().Substring(0, 7) == "Success")
+            {
+                MessageBox.Show("Successfully deleted.");
+            }
         }
 
-        private void UserNotesList_ListChanged(object sender, ListChangedEventArgs e)
+        public void bindUserNotes()
         {
-            if (e.ListChangedType == ListChangedType.ItemAdded)
+            foreach (Note note in user.UserNotes)
             {
-
-            }
-
-            if (e.ListChangedType == ListChangedType.ItemChanged)
-            {
+                UserNotesList.Add(note);
             }
         }
     }

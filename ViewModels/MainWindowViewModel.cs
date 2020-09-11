@@ -26,10 +26,11 @@ namespace WpfApp.ViewModels
         public SignUpViewModel signUpViewModel;
 
         public UserPageViewModel userPageViewModel;
-        //public AddNoteViewModel addNoteViewModel;
+        public AddNewNoteViewModel addNewNoteViewModel;
+        public EditNoteViewModel editNoteViewModel;
         #endregion
 
-        public myBindingList<Note> UserNotesList;
+        //public myBindingList<Note> UserNotesList;
 
         public WebServise webServise;
 
@@ -39,7 +40,9 @@ namespace WpfApp.ViewModels
 
             loginViewModel = new LoginViewModel(this);
             signUpViewModel = new SignUpViewModel(this);
-            userPageViewModel = new UserPageViewModel();
+            userPageViewModel = new UserPageViewModel(this);
+            addNewNoteViewModel = new AddNewNoteViewModel(this);
+            editNoteViewModel = new EditNoteViewModel(this);
 
             SelectedViewModel = loginViewModel;
         }
