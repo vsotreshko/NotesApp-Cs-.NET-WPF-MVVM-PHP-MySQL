@@ -46,7 +46,7 @@ namespace WpfApp.Commands
             }
             else
             {
-                var t = Task.Run(() => _mainWindowViewModel.webServise.SignUp(_signUpViewModel.Email, _signUpViewModel.Username, _signUpViewModel.Password));
+                var t = Task.Run(() => _mainWindowViewModel.WebServise.SignUp(_signUpViewModel.Email, _signUpViewModel.Username, _signUpViewModel.Password));
                 t.Wait();
                 MessageBox.Show(t.Result.ToString());
 

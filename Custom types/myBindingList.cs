@@ -25,7 +25,7 @@ namespace WpfApp.Custom_types
             base.RemoveItem(itemIndex);
         }
  
-        public delegate void myIntDelegate(Note deletedItem);
-        public event myIntDelegate BeforeRemove;
+        public delegate void myDelegate(Note deletedItem);
+        public event myDelegate BeforeRemove;
     }
 }

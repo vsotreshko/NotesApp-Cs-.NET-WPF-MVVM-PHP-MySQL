@@ -9,20 +9,9 @@ namespace WpfApp.Models
 {
     public class Note : INotifyPropertyChanged
     {
-        #region Property Changed Event Handler
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        #endregion
-
         public DateTime creation_date { get; set; }
 
         private int _id;
-        private string _title;
-        private string _note;
-
         public int id
         {
             get { return _id; }
@@ -32,6 +21,8 @@ namespace WpfApp.Models
                 OnPropertyChanged(nameof(id));
             }
         }
+
+        private string _title;
         public string title
         {
             get { return _title; }
@@ -41,6 +32,8 @@ namespace WpfApp.Models
                 OnPropertyChanged(nameof(title));
             }
         }
+
+        private string _note;
         public string note_text
         {
             get { return _note; }
@@ -49,6 +42,12 @@ namespace WpfApp.Models
                 _note = value;
                 OnPropertyChanged(nameof(note_text));
             }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

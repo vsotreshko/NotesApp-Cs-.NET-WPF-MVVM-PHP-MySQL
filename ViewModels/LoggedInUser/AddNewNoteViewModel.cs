@@ -11,10 +11,12 @@ namespace WpfApp.ViewModels.LoggedInUser
 {
     public class AddNewNoteViewModel : BaseViewModel
     {
+        public ICommand AddNewNoteCommand { get; }
+        public ICommand UpdateViewCommand { get; set; }
+
         private readonly MainWindowViewModel _mainWindowViewModel;
         
         private string _title;
-        private string _note;
         public string Title
         {
             get
@@ -26,6 +28,7 @@ namespace WpfApp.ViewModels.LoggedInUser
             }
         }
 
+        private string _note;
         public string Note
         {
             get
@@ -37,9 +40,6 @@ namespace WpfApp.ViewModels.LoggedInUser
             }
         }
 
-        public ICommand AddNewNoteCommand { get; }
-        public ICommand UpdateViewCommand { get; set; }
-
         public AddNewNoteViewModel(MainWindowViewModel mainWindowViewModel)
         {
             _mainWindowViewModel = mainWindowViewModel;
@@ -47,7 +47,7 @@ namespace WpfApp.ViewModels.LoggedInUser
             UpdateViewCommand = new UpdateViewCommand(mainWindowViewModel);
         }
 
-        public void cleanAddNewNoteView()
+        public void CleanAddNewNoteView()
         {
             _mainWindowViewModel.addNewNoteViewModel.Title = String.Empty;
             _mainWindowViewModel.addNewNoteViewModel.Note = String.Empty;

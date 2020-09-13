@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -38,20 +36,17 @@ namespace WpfApp.Commands
 
         public void Execute(object parameter)
         {
-            string username = _mainWindowViewModel.userPageViewModel.user.Username;
-            string password = _mainWindowViewModel.userPageViewModel.user.Password;
+            string username = _mainWindowViewModel.userPageViewModel.User.Username;
+            string password = _mainWindowViewModel.userPageViewModel.User.Password;
             int noteId = _editNoteViewModel.NoteToEdit.id;
             string noteTitle = _editNoteViewModel.Title;
             string noteText = _editNoteViewModel.Note;
 
-            var t = Task.Run(() => _mainWindowViewModel.webServise.EditNote(username, password, noteId, noteTitle, noteText));
+            var t = Task.Run(() => _mainWindowViewModel.WebServise.EditNote(username, password, noteId, noteTitle, noteText));
             t.Wait();
 
             if (t.Result.ToString().Substring(0, 7) == "Success")
             {
-                //Note editedNote = _mainWindowViewModel.userPageViewModel.UserNotesList.SingleOrDefault(p => p.id == noteId);
-
-                //Note editedNote = _mainWindowViewModel.userPageViewModel.UserNotesList.Where(x => (x.id == noteId)).ToList();
                 var editedNote = _mainWindowViewModel.userPageViewModel.UserNotesList.Select((Item, Index) => new { Item, Index }).LastOrDefault(x => x.Item.id == noteId);
 
                 if (editedNote != null)
@@ -76,6 +71,5 @@ namespace WpfApp.Commands
         {
             CanExecuteChanged?.Invoke(this, new EventArgs());
         }
-
     }
 }

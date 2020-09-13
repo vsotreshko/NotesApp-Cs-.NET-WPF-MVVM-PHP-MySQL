@@ -40,12 +40,12 @@ namespace WpfApp.Commands
 
         public void Execute(object parameter)
         {
-            string username = _mainWindowViewModel.userPageViewModel.user.Username;
-            string password = _mainWindowViewModel.userPageViewModel.user.Password;
+            string username = _mainWindowViewModel.userPageViewModel.User.Username;
+            string password = _mainWindowViewModel.userPageViewModel.User.Password;
             string noteTitle = _addNewNoteViewModel.Title;
             string noteText = _addNewNoteViewModel.Note;
 
-            var t = Task.Run(() => _mainWindowViewModel.webServise.AddNote(username, password, noteTitle, noteText));
+            var t = Task.Run(() => _mainWindowViewModel.WebServise.AddNote(username, password, noteTitle, noteText));
             t.Wait();
 
             if (t.Result.ToString().Substring(0, 7) == "Success")
@@ -67,6 +67,5 @@ namespace WpfApp.Commands
         {
             CanExecuteChanged?.Invoke(this, new EventArgs());
         }
-
     }
 }

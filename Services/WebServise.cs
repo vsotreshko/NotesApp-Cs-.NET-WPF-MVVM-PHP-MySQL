@@ -19,14 +19,6 @@ namespace WpfApp.Services
             InitializeClient();
         }
 
-        private void InitializeClient()
-        {
-            HttpClient = new HttpClient();
-            HttpClient.BaseAddress = new Uri("http://lolokol.000webhostapp.com/");
-            HttpClient.DefaultRequestHeaders.Accept.Clear();
-            HttpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-        }
-
         public async Task<string> SignUp(string email, string username, string password)
         {
             using (var httpClient = new HttpClient())
@@ -49,11 +41,6 @@ namespace WpfApp.Services
 
                 return response;
             }
-        }
-
-        internal void DeleteNote()
-        {
-            throw new NotImplementedException();
         }
 
         public async Task<string> Login(string username, string password)
@@ -145,6 +132,14 @@ namespace WpfApp.Services
 
                 return response;
             }
+        }
+
+        private void InitializeClient()
+        {
+            HttpClient = new HttpClient();
+            HttpClient.BaseAddress = new Uri("http://lolokol.000webhostapp.com/");
+            HttpClient.DefaultRequestHeaders.Accept.Clear();
+            HttpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
     }
 }

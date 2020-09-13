@@ -15,7 +15,6 @@ namespace WpfApp.Commands
     {
         private readonly LoginViewModel _loginViewModel;
         private readonly MainWindowViewModel _mainWindowViewModel;
-
         private ICommand _updateViewCommand;
 
         public LoginCommand(LoginViewModel loginViewModel, MainWindowViewModel mainWindowViewModel)
@@ -38,7 +37,7 @@ namespace WpfApp.Commands
 
         public void Execute(object parameter)
         {
-            var t = Task.Run(() => _mainWindowViewModel.webServise.Login(_loginViewModel.Username, _loginViewModel.Password));
+            var t = Task.Run(() => _mainWindowViewModel.WebServise.Login(_loginViewModel.Username, _loginViewModel.Password));
             t.Wait();
 
             if (t.Result.ToString().Substring(0, 7) == "Success")
@@ -46,13 +45,12 @@ namespace WpfApp.Commands
                 int jsonLength = t.Result.ToString().Length - 7;
                 myBindingList<Note> userNotesList = JsonConvert.DeserializeObject<myBindingList<Note>>(t.Result.ToString().Substring(7, jsonLength));
                 
-                _mainWindowViewModel.userPageViewModel.user = new User(_loginViewModel.Username,
+                _mainWindowViewModel.userPageViewModel.User = new User(_loginViewModel.Username,
                                                                         _loginViewModel.Password,
-                                                                        true,
                                                                         userNotesList
                 );
 
-                _mainWindowViewModel.userPageViewModel.bindUserNotes();
+                _mainWindowViewModel.userPageViewModel.BindUserNotes();
 
                 _updateViewCommand.Execute("UserPage");
             } else

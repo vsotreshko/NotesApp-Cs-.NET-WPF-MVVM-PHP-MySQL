@@ -30,7 +30,7 @@ namespace WpfApp.Commands
 
         public void Execute(object parameter)
         {
-            _mainWindowViewModel.userPageViewModel.user = null;
+            _mainWindowViewModel.userPageViewModel.User = null;
             _mainWindowViewModel.userPageViewModel.UserNotesList = new myBindingList<Note>();
             _updateViewCommand.Execute("Login");
         }

@@ -6,11 +6,10 @@ namespace WpfApp.ViewModels.Authentication
 {
     public class SignUpViewModel : BaseViewModel
     {
-        private string _username;
-        private string _password;
-        private string _email;
-        private string _confirmPassword;
+        public ICommand SignUpCommand { get; set; }
+        public ICommand UpdateViewCommand { get; set; }
 
+        private string _username;
         public string Username
         {
             get { return _username; }
@@ -20,6 +19,8 @@ namespace WpfApp.ViewModels.Authentication
                 OnPropertyChanged(nameof(Username));
             }
         }
+
+        private string _password;
         public string Password
         {
             get
@@ -30,6 +31,8 @@ namespace WpfApp.ViewModels.Authentication
                 OnPropertyChanged(nameof(Password));
             }
         }
+
+        private string _email;
         public string Email
         {
             get { return _email; }
@@ -39,6 +42,8 @@ namespace WpfApp.ViewModels.Authentication
                 OnPropertyChanged(nameof(Email));
             }
         }
+
+        private string _confirmPassword;
         public string ConfirmPassword
         {
             get
@@ -50,16 +55,13 @@ namespace WpfApp.ViewModels.Authentication
             }
         }
 
-        public ICommand SignUpCommand { get; set; }
-        public ICommand UpdateViewCommand { get; set; }
-
         public SignUpViewModel(MainWindowViewModel mainWindowViewModel)
         {
             SignUpCommand = new SignUpCommand(this, mainWindowViewModel);
             UpdateViewCommand = new UpdateViewCommand(mainWindowViewModel);
         }
 
-        public void cleanSignUpView()
+        public void CleanSignUpView()
         {
             Username = string.Empty;
             Password = string.Empty;

@@ -1,12 +1,6 @@
-﻿using Microsoft.JScript;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Input;
 using WpfApp.ViewModels;
-using WpfApp.ViewModels.LoggedInUser;
 
 namespace WpfApp.Commands
 {
@@ -30,12 +24,12 @@ namespace WpfApp.Commands
         {
             if (parameter.ToString() == "Login")
             {
-                _mainWindowViewModel.loginViewModel.cleanLoginView();
+                _mainWindowViewModel.loginViewModel.CleanLoginView();
                 _mainWindowViewModel.SelectedViewModel = _mainWindowViewModel.loginViewModel;
             }
             else if (parameter.ToString() == "SignUp")
             {
-                _mainWindowViewModel.signUpViewModel.cleanSignUpView();
+                _mainWindowViewModel.signUpViewModel.CleanSignUpView();
                 _mainWindowViewModel.SelectedViewModel = _mainWindowViewModel.signUpViewModel;
             }
             else if (parameter.ToString() == "UserPage")
@@ -44,7 +38,7 @@ namespace WpfApp.Commands
             }
             else if (parameter.ToString() == "AddNewNote")
             {
-                _mainWindowViewModel.addNewNoteViewModel.cleanAddNewNoteView();
+                _mainWindowViewModel.addNewNoteViewModel.CleanAddNewNoteView();
                 _mainWindowViewModel.SelectedViewModel = _mainWindowViewModel.addNewNoteViewModel;
             }
             else if (parameter.ToString() == "EditNote")

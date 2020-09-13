@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using WpfApp.Models;
 using WpfApp.ViewModels;
 using WpfApp.ViewModels.LoggedInUser;
 
@@ -14,7 +9,6 @@ namespace WpfApp.Commands
     {
         private readonly UserPageViewModel _userPageViewModel;
         private readonly MainWindowViewModel _mainWindowViewModel;
-        private Note _noteToEdit;
 
         public UpdateViewToEditNoteViewCommand(UserPageViewModel userPageViewModel, MainWindowViewModel viewModel)
         {
@@ -34,12 +28,10 @@ namespace WpfApp.Commands
 
         public void Execute(object parameter)
         {
-            _noteToEdit = _userPageViewModel.SelectedRow;
+            _mainWindowViewModel.editNoteViewModel.Title = _userPageViewModel.SelectedRow.title;
+            _mainWindowViewModel.editNoteViewModel.Note = _userPageViewModel.SelectedRow.note_text;
 
-            _mainWindowViewModel.editNoteViewModel.Title = _noteToEdit.title;
-            _mainWindowViewModel.editNoteViewModel.Note = _noteToEdit.note_text;
-
-            _mainWindowViewModel.editNoteViewModel.NoteToEdit = _noteToEdit;
+            _mainWindowViewModel.editNoteViewModel.NoteToEdit = _userPageViewModel.SelectedRow;
 
             _mainWindowViewModel.SelectedViewModel = _mainWindowViewModel.editNoteViewModel;
         }

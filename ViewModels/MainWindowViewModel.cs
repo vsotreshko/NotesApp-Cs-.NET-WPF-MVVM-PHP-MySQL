@@ -1,7 +1,4 @@
-﻿using WpfApp.Commands;
-using WpfApp.Custom_types;
-using WpfApp.Models;
-using WpfApp.Services;
+﻿using WpfApp.Services;
 using WpfApp.ViewModels.Authentication;
 using WpfApp.ViewModels.Base;
 using WpfApp.ViewModels.LoggedInUser;
@@ -10,7 +7,18 @@ namespace WpfApp.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel
     {
-        #region View models
+        /// <summary>
+        /// 
+        /// MainWindow viewmodel is the main class in the program.
+        /// It is including all other viewmodels, that will arise in program.
+        /// 
+        /// "SelectedViewModel" variable is using to change user controls in the main window, during program run.
+        /// 
+        /// "WebService" variable is including entity that allows program to make HTTP requests.
+        /// 
+        /// </summary>
+
+        #region Variable to control selected view model for MainWindow
         private BaseViewModel _selectedViewModel;
         public BaseViewModel SelectedViewModel
         {
@@ -21,22 +29,23 @@ namespace WpfApp.ViewModels
                 OnPropertyChanged(nameof(SelectedViewModel));
             }
         }
+        #endregion
 
+        #region Variables for all viewmodels of the program
         public LoginViewModel loginViewModel;
         public SignUpViewModel signUpViewModel;
-
         public UserPageViewModel userPageViewModel;
         public AddNewNoteViewModel addNewNoteViewModel;
         public EditNoteViewModel editNoteViewModel;
         #endregion
 
-        //public myBindingList<Note> UserNotesList;
+        // Web service for HTTP requests
+        public WebServise WebServise;
 
-        public WebServise webServise;
 
         public MainWindowViewModel()
         {
-            webServise = new WebServise();
+            WebServise = new WebServise();
 
             loginViewModel = new LoginViewModel(this);
             signUpViewModel = new SignUpViewModel(this);
