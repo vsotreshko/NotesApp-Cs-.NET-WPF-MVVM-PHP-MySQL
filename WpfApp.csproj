@@ -147,6 +147,12 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="PHP Server part\addNote.php" />
+    <None Include="PHP Server part\config.php" />
+    <None Include="PHP Server part\deleteNote.php" />
+    <None Include="PHP Server part\editNote.php" />
+    <None Include="PHP Server part\login.php" />
+    <None Include="PHP Server part\signup.php" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
